@@ -5,49 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../static/css/style.css">
     <script
-src="https://code.responsivevoice.org/responsivevoice.js?key=rK5SSKqk"></script>
+    src="https://code.responsivevoice.org/responsivevoice.js?key=rK5SSKqk"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-<a href="{{ url_for('logout') }}">Logout (Clear Access)</a>
+<button class=" bg-rose-500 p-2 rounded m-5 hover:scale-105 transition duration-300 hover:bg-gray-300 hover:text-gray-800 active:scale-100">
+    <a href="{{ url_for('logout') }}">Logout</a>
+</button>
 
-<div class="container">
-    <div class="card">
-        <h2>Translator</h2>
-        <div class="card-body">
 
-            <form action="/translate" method="POST">
-                <div class="input-group mb-3">
-                    <select class="custom-select" id="source-language-select" name="source_language">
+<div class="container justify-self-center justify-center">
+    <div class="card ">
+        <h2 class=" justify-self-center text-3xl p-3 font-semibold">Translator</h2>
+        <div class="card-body ">
+
+            <form class=" flex flex-col items-center justify-self-center w-1/2 max-sm:w-4/5 lg:w-1/3" action="/translate" method="POST">
+                <div class="input-group w-full flex mb-3 gap-3 justify-between">
+                    <select class="custom-select w-1/2 bg-gray-800 p-2 border-2 border-gray-600 rounded outline-0 hover:border-gray-300 transition duration-500 ease-out cursor-pointer" id="source-language-select" name="source_language">
                         {% for code, name in source_languages %}
                             <option value="{{ code }}">{{ name }}</option>
                         {% endfor %}
                     </select>
 
-                    <select class="custom-select" id="target-language-select" name="target_language">
+                    <select class="custom-select w-1/2 bg-gray-800 p-2 border-2 border-gray-600 rounded outline-0 hover:border-gray-300 transition duration-500 ease-out cursor-pointer" id="target-language-select" name="target_language">
                         {% for code, name in target_languages %}
                             <option value="{{ code }}">{{ name }}</option>
                         {% endfor %}
                     </select>
                 </div>
 
-                <div class="form-group">
-                    <textarea class="form-control" id="text-to-translate" name="text" rows="3" placeholder="Enter text to translate"></textarea>
-                </div>
+                <textarea class="form-control w-full bg-gray-800 p-5 border-2 border-gray-600 rounded outline-0 resize-none hover:border-gray-300 transition duration-500 ease-out" id="text-to-translate" name="text" rows="3" placeholder="Enter text to translate"></textarea>
+                <br>
+                <button type="submit" class="btn btn-success bg-indigo-500 p-2 w-full rounded hover:scale-105 transition hover:bg-indigo-600 duration-300 ease-out active:scale-100" id="translate-button">Translate</button>
 
-                <button type="submit" class="btn btn-success" id="translate-button">Translate</button>
-
-                <div class="form-group">
-                    <label for="translated-text">Translated text:</label>
-                </div>
-
-                <div id="snippet-container">
+                <div id="snippet-container" class=" bg-gray-800 p-5 w-full rounded border-2 border-gray-600 my-5">
+                    <p>Translation result</p>
+                    <span class="btn btn-secondary cursor-pointer" id="pronounce-button"><i class="fa-solid fa-volume-high hover:scale-110 transition ease-out"></i></span>
                     <pre id="snippet"></pre>
-                    <span class="btn btn-secondary" id="pronounce-button"><i class="fa-solid fa-volume-high"></i></span>
-                    <button onclick="downloadTxtFile()">Download Text File</button>
+
                 </div>
+                    <button class=" bg-indigo-500 w-full p-2 rounded hover:scale-105 transition justify-self-center duration-300 hover:bg-indigo-600 ease-out active:scale-100" onclick="downloadTxtFile()">Download Text File</button>                
             </form>
         </div>
+    </div>
+    <br>
+    <div class=" justify-self-center p-10">
+        <h1 class=" text-3xl font-semibold text-center">📖How it works</h1>
+        <ol class=" list-decimal text-lg/8 p-5">
+            <li>Choose your <strong class=" text-indigo-700">source language</strong> : The language from which you wish to translate</li>
+            <li>Choose the <strong class=" text-indigo-700">destination language</strong> </li>
+            <li>Enter the text you want to translate in the text area</li>
+            <li> <strong class=" text-indigo-700">Translate</strong> with the stron Translate button</li>
+            <li><strong class=" text-indigo-700">Listen</strong> to you translated text</li>
+            <li><strong class=" text-indigo-700">Save</strong> the translation into a text file with the download button</li>
+        </ol>
     </div>
 </div>
 

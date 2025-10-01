@@ -4,18 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <h2>Access Page</h2>
+    <h2 class=" justify-self-center text-3xl font-semibold p-5">Authentication page</h2>
 
     {% if error %}
         <p style="color: red;">{{error}}</p>
     {% endif %}
 
-    <form method="POST" action="{{ url_for('pin_entry') }}">
-        <label for="pin">Enter PIN:</label>
-        <input type="password" id="pin" name="pin" required>
-        <button type="submit">Submit</button>
+    <form class=" justify-self-center" method="POST" action="{{ url_for('pin_entry') }}">
+        <label for="pin">Please enter the PIN to access the page:</label>
+        <br>
+        <input class=" bg-transparent bg-gray-800 w-full p-2 my-5 border-2 border-gray-600 rounded outline-0 hover:border-gray-300 transition duration-500 ease-out" type="password" id="pin" name="pin" required>
+        <br>
+        <button class=" bg-indigo-500 p-2 w-full rounded hover:scale-105 transition hover:bg-indigo-600 duration-300 ease-out active:scale-100" type="submit">Submit</button>
     </form>
 </body>
 </html>
