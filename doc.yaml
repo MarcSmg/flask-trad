@@ -1,0 +1,41 @@
+parameters:
+  - name: text_to_translate
+    in: formData
+    type: string
+    required: true
+    description: The text string that needs to be translated.
+    example: "The rain in Spain falls mainly on the plain."
+  - name: source_language
+    in: formData
+    type: string
+    required: true
+    description: The language code of the source text (e.g., 'en', 'auto').
+    example: "en"
+  - name: target_language
+    in: formData
+    type: string
+    required: true
+    description: The language code to translate the text into (e.g., 'es', 'fr').
+    example: "fr"
+responses:
+  200:
+    description: Translation successfully completed (200 OK for successful operation
+    schema:
+      type: object
+      properties:
+        translation:
+          type: string
+          description: The resulting translated text.
+          example: "La pluie en Espagne tombe principalement sur la plaine."
+        source_language:
+          type: string
+        target_language:
+          type: string
+  400:
+    description: Bad Request. Missing required form data fields.
+    schema:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "Please provide text, source, and target languages."

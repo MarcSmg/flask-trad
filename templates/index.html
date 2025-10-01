@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script
+src="https://code.responsivevoice.org/responsivevoice.js?key=rK5SSKqk"></script>
+</head>
+<body>
+<a href="{{ url_for('logout') }}">Logout (Clear Access)</a>
+
+<div class="container">
+    <div class="card">
+        <h2>Translator</h2>
+        <div class="card-body">
+
+            <form action="/translate" method="POST">
+                <div class="input-group mb-3">
+                    <select class="custom-select" id="source-language-select" name="source_language">
+                        {% for code, name in source_languages %}
+                            <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <select class="custom-select" id="target-language-select" name="target_language">
+                        {% for code, name in target_languages %}
+                            <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" id="text-to-translate" name="text" rows="3" placeholder="Enter text to translate"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-success" id="translate-button">Translate</button>
+
+                <div class="form-group">
+                    <label for="translated-text">Translated text:</label>
+                </div>
+
+                <div id="snippet-container">
+                    <pre id="snippet"></pre>
+                    <span class="btn btn-secondary" id="pronounce-button"><i class="fa-solid fa-volume-high"></i></span>
+                    <button onclick="downloadTxtFile()">Download Text File</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Access Page</h2>
+
+    {% if error %}
+        <p style="color: red;">{{error}}</p>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('pin_entry') }}">
+        <label for="pin">Enter PIN:</label>
+        <input type="password" id="pin" name="pin" required>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
